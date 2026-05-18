@@ -26,11 +26,15 @@ function toggleFaq(btn) {
 
   // Close all
   document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.classList.remove('open');
+    q.setAttribute('aria-expanded', 'false');
+  });
 
   if (!isOpen) {
     answer.classList.add('open');
     btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
   }
 }
 
@@ -60,12 +64,13 @@ function handleSubmit(e) {
   })
     .then(response => {
       // Vì dùng no-cors nên không check được response thực sự, nhưng nếu vào đây thì request đã được gửi
+      btn.textContent = 'Đã gửi!';
       form.style.display = 'none';
       success.classList.add('show');
     })
     .catch(error => {
       console.error('Error!', error.message);
-      btn.textContent = 'Lỗi, thử lại sau';
+      btn.textContent = 'Đăng Ký Giữ Chỗ Ngay ✦';
       btn.disabled = false;
       alert('Có lỗi xảy ra khi gửi đăng ký. Vui lòng thử lại sau.');
     });
