@@ -37,13 +37,35 @@ section { scroll-margin-top: 90px; }
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 700;
   color: var(--dark);
-  line-height: 1.25;
+  line-height: 1.4;
   text-align: center;
   margin-bottom: 48px;
 }
 .section-title em { color: var(--rose); font-style: italic; }
 .section-title.light { color: var(--white); }
 .section-title.light em { color: var(--pink); }
+.program-subtitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--mid);
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.program-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  text-align: center;
+}
+.program-info p {
+  font-size: 0.95rem;
+  color: var(--mid);
+  font-weight: 500;
+  line-height: 1.6;
+}
 .section-title-left {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
@@ -222,7 +244,7 @@ select:focus-visible {
 .hero-title em {
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  color: #fff0f2;
+  color: #ffffff;
   font-style: normal;
   display: block;
   font-size: clamp(3.5rem, 10vw, 7.5rem);
@@ -406,11 +428,12 @@ select:focus-visible {
   background: var(--rose);
   color: #fff;
   text-align: center;
-  padding: 12px;
+  padding: 16px 12px;
   font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  border-radius: 20px 20px 0 0;
 }
 .program-day.day2 { background: var(--mid); }
 .program-img {
@@ -520,13 +543,19 @@ select:focus-visible {
 }
 .investment-content h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.9rem, 3vw, 2.4rem);
-  margin-bottom: 14px;
+  font-size: clamp(1.95rem, 3.2vw, 2.6rem);
+  margin-bottom: 16px;
   color: var(--dark);
-  line-height: 1.2;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  font-weight: 700;
 }
 .investment-content h2 span {
   color: var(--rose);
+}
+.investment-content h2 em {
+  color: var(--rose);
+  font-style: italic;
 }
 .investment-note {
   margin-bottom: 18px;
@@ -563,6 +592,19 @@ select:focus-visible {
   padding-left: 32px;
   color: var(--dark);
   font-weight: 600;
+}
+.gift-heading {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: capitalize;
+  color: var(--mid);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.gift-heading strong {
+  color: var(--rose);
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
@@ -606,18 +648,21 @@ select:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  padding: 12px 20px;
+  border-radius: 20px;
+  padding: 16px 28px;
   font-weight: 700;
-  margin-bottom: 18px;
-  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  font-size: 1.1rem;
 }
 .schedule-card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 20px;
   color: var(--dark);
+  line-height: 1.4;
 }
 .schedule-info {
   margin: 0 auto 30px;
