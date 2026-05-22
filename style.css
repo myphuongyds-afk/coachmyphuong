@@ -215,18 +215,19 @@ select:focus-visible {
   padding: 0 24px;
 }
 .hero-label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #ffffff;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.25);
   display: inline-block;
-  padding: 8px 20px;
+  padding: 10px 24px;
   border-radius: 50px;
   margin-bottom: 24px;
-  border: 1px solid rgba(255,255,255,0.4);
-  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
@@ -773,6 +774,15 @@ select:focus-visible {
   border-color: var(--pink);
 }
 .testi-stars { color: #e8a87c; font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+.testi-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(211,120,129,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  object-fit: cover;
+}
 .testi-card p {
   color: var(--mid);
   font-size: 0.95rem;
