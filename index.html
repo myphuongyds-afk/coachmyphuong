@@ -358,6 +358,49 @@
     </div>
   </footer>
 
+  <!-- QR PAYMENT MODAL -->
+  <div class="qr-overlay" id="qrModal" role="dialog" aria-modal="true" aria-label="Thanh toán chuyển khoản">
+    <div class="qr-modal">
+
+      <div class="qr-modal-header">
+        <p class="section-tag" style="text-align:center; margin-bottom:4px;">Hoàn Tất Đăng Ký</p>
+        <h3 class="qr-modal-title">Quét QR để chuyển khoản</h3>
+        <p class="qr-modal-sub">Hệ thống tự động xác nhận sau khi nhận giao dịch</p>
+      </div>
+
+      <div class="qr-img-wrap">
+        <img id="qrCodeImg" src="" alt="QR Code thanh toán SePay" class="qr-img">
+        <div class="qr-img-label">Quét bằng app ngân hàng bất kỳ</div>
+      </div>
+
+      <div class="qr-info-box">
+        <div class="qr-info-row">
+          <span class="qr-label">Số tiền</span>
+          <strong id="qrAmount" class="qr-value qr-value--price">279.000 ₫</strong>
+        </div>
+        <div class="qr-info-row">
+          <span class="qr-label">Nội dung CK</span>
+          <div class="qr-copy-group">
+            <code id="qrOrderId" class="qr-code-text">—</code>
+            <button class="btn-copy" onclick="copyOrderId()" title="Sao chép mã đơn">📋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-status" id="qrStatus">
+        <div class="qr-spinner"></div>
+        <span>Đang chờ xác nhận thanh toán…</span>
+      </div>
+
+      <div class="qr-success-msg" id="qrSuccess">
+        <div class="qr-success-icon">✅</div>
+        <p>Thanh toán thành công!<br>Đang chuyển hướng…</p>
+      </div>
+
+      <button class="btn-qr-back" onclick="hideQRModal()">← Quay lại</button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 

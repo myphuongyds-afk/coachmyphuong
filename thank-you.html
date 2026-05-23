@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng – Bản Đồ Hạnh Phúc</title>
+  <meta name="theme-color" content="#D37881">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --rose: #D37881;
+      --pink: #ECC8C8;
+      --cream: #FCF1ED;
+      --dark: #3a2a2a;
+      --mid: #7a4f55;
+    }
+    body {
+      font-family: 'Noto Serif Display', serif;
+      background: var(--cream);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .petals {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 32px;
+      padding: 56px 48px;
+      max-width: 560px;
+      width: 100%;
+      box-shadow: 0 24px 72px rgba(211,120,129,0.18);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose);
+      background: var(--cream);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    h1 em { color: var(--rose); font-style: italic; }
+
+    .sub {
+      font-size: 1.05rem;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--pink);
+      border-radius: 2px;
+      margin: 0 auto 28px;
+    }
+
+    .checklist {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+    .checklist li::before {
+      content: '✦';
+      color: var(--rose);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .notice {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 20px 24px;
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .notice strong { color: var(--rose); }
+
+    .btn-home {
+      display: inline-block;
+      background: var(--rose);
+      color: #fff;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-home:hover {
+      background: #c06870;
+      transform: translateY(-2px);
+    }
+
+    .footer-note {
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--mid);
+      opacity: 0.7;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 36px 22px; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="petals">🌸</div>
+
+  <div class="card">
+    <span class="badge">Thanh Toán Thành Công</span>
+    <h1>Chào mừng bạn đến với<br><em>Bản Đồ Hạnh Phúc!</em></h1>
+    <p class="sub">Chỗ ngồi của bạn đã được giữ chính thức.<br>Hành trình chuyển hóa bắt đầu từ đây. 🌷</p>
+
+    <div class="divider"></div>
+
+    <ul class="checklist">
+      <li>Phương sẽ gửi email xác nhận và thông tin Zoom trong vòng <strong>24 giờ</strong></li>
+      <li>Workshop diễn ra vào <strong>19h30, ngày 6/6 & 8/6/2026</strong> qua Zoom Online</li>
+      <li>Recording sẽ được gửi sau mỗi buổi để bạn xem lại bất cứ lúc nào</li>
+    </ul>
+
+    <div class="notice">
+      Không thấy email? Hãy kiểm tra thư mục <strong>Spam</strong> hoặc liên hệ<br>
+      <strong>myphuongyds@gmail.com</strong> để được hỗ trợ.
+    </div>
+
+    <a href="index.html" class="btn-home">Về Trang Chủ ✦</a>
+  </div>
+
+  <p class="footer-note">© 2026 Tô My Phương · Workshop Bản Đồ Hạnh Phúc</p>
+
+</body>
+</html>
