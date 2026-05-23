@@ -126,11 +126,11 @@ function showQRModal(orderId) {
   success.style.display = 'none';
 
   // Điền thông tin
-  qrId.textContent  = orderId;
+  qrId.textContent  = 'SEVQR ' + orderId;
   qrAmt.textContent = PAYMENT.AMOUNT.toLocaleString('vi-VN') + ' ₫';
 
   // Tạo QR SePay
-  const qrUrl = `https://qr.sepay.vn/img?bank=${PAYMENT.BANK_BIN}&acc=${PAYMENT.ACCOUNT_NO}&template=compact&amount=${PAYMENT.AMOUNT}&des=${orderId}`;
+  const qrUrl = `https://qr.sepay.vn/img?bank=${PAYMENT.BANK_BIN}&acc=${PAYMENT.ACCOUNT_NO}&template=compact&amount=${PAYMENT.AMOUNT}&des=SEVQR%20${orderId}`;
   qrImg.src = qrUrl;
 
   modal.classList.add('open');
