@@ -18,8 +18,8 @@ const PACKAGES = {
 };
 
 function preselectPackage(pkg) {
-  const radio = document.querySelector(`input[name="Package"][value="${pkg}"]`);
-  if (radio) radio.checked = true;
+  const select = document.getElementById('package');
+  if (select) select.value = pkg;
 }
 
 

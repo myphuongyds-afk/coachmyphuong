@@ -329,31 +329,13 @@
           <textarea id="why" name="Why" rows="3" placeholder="Chia sẻ để chúng tôi hiểu bạn hơn..."></textarea>
         </div>
         <div class="form-group">
-          <label>Gói tham gia *</label>
-          <div class="pkg-grid">
-            <label class="pkg-option">
-              <input type="radio" name="Package" value="basic" required>
-              <span class="pkg-card">
-                <span class="pkg-price">50K</span>
-                <span class="pkg-label">Tham dự</span>
-              </span>
-            </label>
-            <label class="pkg-option">
-              <input type="radio" name="Package" value="standard">
-              <span class="pkg-card">
-                <span class="pkg-price">150K</span>
-                <span class="pkg-label">Tham dự + Tài liệu</span>
-              </span>
-            </label>
-            <label class="pkg-option">
-              <input type="radio" name="Package" value="premium">
-              <span class="pkg-card pkg-card--featured">
-                <span class="pkg-popular">Phổ biến</span>
-                <span class="pkg-price">279K</span>
-                <span class="pkg-label">Trọn gói + Coach 1:1</span>
-              </span>
-            </label>
-          </div>
+          <label for="package">Gói tham gia *</label>
+          <select id="package" name="Package" class="form-select" required>
+            <option value="" disabled selected>— Chọn gói tham gia —</option>
+            <option value="basic">50K — Tham dự</option>
+            <option value="standard">150K — Tham dự + Tài liệu</option>
+            <option value="premium">279K — Trọn gói + Coach 1:1 ⭐ Phổ biến nhất</option>
+          </select>
         </div>
         <button type="submit" class="btn-submit" id="submitBtn">Đăng Ký Giữ Chỗ Ngay ✦</button>
         <p class="register-note">Zoom Online + Ghi âm recording</p>
