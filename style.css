@@ -1085,19 +1085,16 @@ select:focus-visible {
 /* Tablet: 768px */
 @media (max-width: 768px) {
 
-  /* NAV */
+  /* NAV — 1 hàng: logo trái, nút phải */
   .nav-inner {
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0;
+    justify-content: space-between;
+    align-items: center;
   }
   .nav-logo { font-size: 1rem; }
-  .nav-links {
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .btn-nav { padding: 8px 16px; font-size: 0.8rem; }
+  .nav-links { display: none; }
+  .btn-nav { padding: 8px 16px; font-size: 0.8rem; white-space: nowrap; }
 
   /* HERO */
   .hero { min-height: 100svh; padding-top: 72px; }
@@ -1151,8 +1148,8 @@ select:focus-visible {
 
   /* NAV */
   .nav-inner { padding: 0 16px; }
-  .nav-logo { font-size: 0.92rem; }
-  .btn-nav { padding: 8px 14px; font-size: 0.76rem; }
+  .nav-logo { font-size: 0.88rem; }
+  .btn-nav { padding: 7px 14px; font-size: 0.75rem; }
 
   /* HERO */
   .hero { padding-top: 64px; }
