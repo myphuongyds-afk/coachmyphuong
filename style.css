@@ -1234,7 +1234,7 @@ select:focus-visible {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
   margin-top: 8px;
 }
 .pricing-card {
@@ -1252,23 +1252,31 @@ select:focus-visible {
   transform: translateY(-4px);
   box-shadow: 0 20px 48px rgba(211,120,129,0.15);
 }
+
+/* Card gói Premium — nền đậm nổi bật */
 .pricing-card--featured {
-  border-color: var(--rose);
-  box-shadow: 0 16px 48px rgba(211,120,129,0.2);
+  background: linear-gradient(145deg, #c0606c 0%, #a84555 100%);
+  border-color: transparent;
+  box-shadow: 0 20px 56px rgba(168,69,85,0.38);
 }
+.pricing-card--featured:hover {
+  box-shadow: 0 28px 64px rgba(168,69,85,0.48);
+}
+
 .pricing-popular {
   position: absolute;
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--rose);
-  color: #fff;
+  background: #fff;
+  color: #a84555;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   padding: 5px 16px;
   border-radius: 100px;
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(168,69,85,0.2);
 }
 .pricing-price {
   font-family: 'Playfair Display', serif;
@@ -1277,12 +1285,14 @@ select:focus-visible {
   color: var(--rose);
   line-height: 1;
 }
+.pricing-card--featured .pricing-price { color: #fff; }
 .pricing-price span { font-size: 1.4rem; }
 .pricing-name {
   font-weight: 700;
   font-size: 1rem;
   color: var(--dark);
 }
+.pricing-card--featured .pricing-name { color: #fff; }
 .pricing-list {
   list-style: none;
   display: flex;
@@ -1296,6 +1306,7 @@ select:focus-visible {
   line-height: 1.5;
   padding-left: 0;
 }
+.pricing-card--featured .pricing-list li { color: rgba(255,255,255,0.88); }
 .pricing-list li small { font-size: 0.8em; opacity: 0.8; }
 .btn-pricing {
   display: block;
@@ -1309,17 +1320,22 @@ select:focus-visible {
   border: 2px solid var(--rose);
   color: var(--rose);
   transition: all 0.25s;
-  margin-top: 8px;
+  margin-top: auto;
+  padding-top: 13px;
 }
 .btn-pricing:hover {
   background: var(--rose);
   color: #fff;
 }
 .btn-pricing--featured {
-  background: var(--rose);
-  color: #fff;
+  background: #fff;
+  color: #a84555;
+  border-color: #fff;
 }
-.btn-pricing--featured:hover { background: #c06870; border-color: #c06870; }
+.btn-pricing--featured:hover {
+  background: rgba(255,255,255,0.88);
+  border-color: rgba(255,255,255,0.88);
+}
 
 /* Package selector in form */
 .pkg-grid {
