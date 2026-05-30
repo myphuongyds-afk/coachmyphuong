@@ -3,16 +3,24 @@
 // ═══════════════════════════════════════════════════════════════
 const PAYMENT = {
   GAS_URL:       'https://script.google.com/macros/s/AKfycbxYx0u0kOuSH9F26Dlni6RjWMXcuTrqvvtvhWNjX63vNDU89FBiVLI9JxxEgTRBKwk/exec',
-
-  BANK_BIN:      '970415',          // VietinBank
-  ACCOUNT_NO:    '109006855197',    // Số tài khoản
-  ACCOUNT_NAME:  'TO THI MY PHUONG', // Tên chủ tài khoản
-  AMOUNT:        279000,          // Giá vé (VNĐ)
-  THANK_YOU_URL: 'thank-you.html',// URL trang cảm ơn sau thanh toán
-
-  POLL_INTERVAL: 3000,  // Kiểm tra mỗi 3 giây
-  POLL_TIMEOUT:  200,   // 200 lần × 3s = 10 phút tối đa
+  BANK_BIN:      '970415',
+  ACCOUNT_NO:    '109006855197',
+  ACCOUNT_NAME:  'TO THI MY PHUONG',
+  THANK_YOU_URL: 'thank-you.html',
+  POLL_INTERVAL: 3000,
+  POLL_TIMEOUT:  200,
 };
+
+const PACKAGES = {
+  basic:    { label: 'Tham dự',             price: 50000  },
+  standard: { label: 'Tham dự + Tài liệu',  price: 150000 },
+  premium:  { label: 'Trọn gói + Coach 1:1', price: 279000 },
+};
+
+function preselectPackage(pkg) {
+  const radio = document.querySelector(`input[name="Package"][value="${pkg}"]`);
+  if (radio) radio.checked = true;
+}
 
 
 // ═══════════════════════════════════════════════════════════════
@@ -83,14 +91,20 @@ async function handleSubmit(e) {
   btn.textContent = 'Đang xử lý…';
   btn.disabled    = true;
 
+  // Đọc gói đã chọn
+  const selectedPkg = form.Package.value;
+  const pkg = PACKAGES[selectedPkg] || PACKAGES.premium;
+
   // Thu thập dữ liệu form
   const params = new URLSearchParams({
-    action: 'register',
-    Name:   form.Name.value.trim(),
-    Phone:  form.Phone.value.trim(),
-    Email:  form.Email.value.trim(),
-    Status: form.Status.value,
-    Why:    form.Why.value.trim(),
+    action:   'register',
+    Name:     form.Name.value.trim(),
+    Phone:    form.Phone.value.trim(),
+    Email:    form.Email.value.trim(),
+    Status:   form.Status.value,
+    Why:      form.Why.value.trim(),
+    Package:  pkg.label,
+    Amount:   pkg.price,
   });
 
   try {
@@ -99,7 +113,7 @@ async function handleSubmit(e) {
 
     if (!data.success || !data.orderId) throw new Error(data.error || 'Không nhận được mã đơn');
 
-    showQRModal(data.orderId);
+    showQRModal(data.orderId, pkg.price);
     startPolling(data.orderId);
 
   } catch (err) {
@@ -113,7 +127,8 @@ async function handleSubmit(e) {
 // ═══════════════════════════════════════════════════════════════
 //  MODAL QR CODE
 // ═══════════════════════════════════════════════════════════════
-function showQRModal(orderId) {
+function showQRModal(orderId, amount) {
+  amount = amount || 279000;
   const modal  = document.getElementById('qrModal');
   const qrImg  = document.getElementById('qrCodeImg');
   const qrId   = document.getElementById('qrOrderId');
@@ -127,10 +142,10 @@ function showQRModal(orderId) {
 
   // Điền thông tin
   qrId.textContent  = 'SEVQR ' + orderId;
-  qrAmt.textContent = PAYMENT.AMOUNT.toLocaleString('vi-VN') + ' ₫';
+  qrAmt.textContent = amount.toLocaleString('vi-VN') + ' ₫';
 
   // Tạo QR SePay
-  const qrUrl = `https://qr.sepay.vn/img?bank=${PAYMENT.BANK_BIN}&acc=${PAYMENT.ACCOUNT_NO}&template=compact&amount=${PAYMENT.AMOUNT}&des=SEVQR%20${orderId}`;
+  const qrUrl = `https://qr.sepay.vn/img?bank=${PAYMENT.BANK_BIN}&acc=${PAYMENT.ACCOUNT_NO}&template=compact&amount=${amount}&des=SEVQR%20${orderId}`;
   qrImg.src = qrUrl;
 
   modal.classList.add('open');
