@@ -167,7 +167,16 @@ function hideQRModal() {
 function copyOrderId() {
   const orderId = document.getElementById('qrOrderId').textContent;
   navigator.clipboard.writeText(orderId).then(() => {
-    const btn = document.querySelector('.btn-copy');
+    const btn = document.querySelector('#qrOrderId + .btn-copy') || document.querySelectorAll('.btn-copy')[1];
+    btn.textContent = '✅';
+    setTimeout(() => { btn.textContent = '📋'; }, 1500);
+  });
+}
+
+function copyAccNo() {
+  const accNo = document.getElementById('qrAccNo').textContent;
+  navigator.clipboard.writeText(accNo).then(() => {
+    const btn = document.getElementById('btnCopyAcc');
     btn.textContent = '✅';
     setTimeout(() => { btn.textContent = '📋'; }, 1500);
   });

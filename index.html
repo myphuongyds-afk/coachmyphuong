@@ -415,11 +415,28 @@
           <span class="qr-label">Số tiền</span>
           <strong id="qrAmount" class="qr-value qr-value--price">279.000 ₫</strong>
         </div>
+        <div class="qr-divider"></div>
+        <div class="qr-info-row">
+          <span class="qr-label">Ngân hàng</span>
+          <span class="qr-value">VietinBank</span>
+        </div>
+        <div class="qr-info-row">
+          <span class="qr-label">Số tài khoản</span>
+          <div class="qr-copy-group">
+            <code id="qrAccNo" class="qr-code-text">109006855197</code>
+            <button class="btn-copy" id="btnCopyAcc" onclick="copyAccNo()" title="Sao chép số tài khoản">📋</button>
+          </div>
+        </div>
+        <div class="qr-info-row">
+          <span class="qr-label">Chủ tài khoản</span>
+          <span class="qr-value">TO THI MY PHUONG</span>
+        </div>
+        <div class="qr-divider"></div>
         <div class="qr-info-row">
           <span class="qr-label">Nội dung CK</span>
           <div class="qr-copy-group">
             <code id="qrOrderId" class="qr-code-text">—</code>
-            <button class="btn-copy" onclick="copyOrderId()" title="Sao chép mã đơn">📋</button>
+            <button class="btn-copy" onclick="copyOrderId()" title="Sao chép nội dung chuyển khoản">📋</button>
           </div>
         </div>
       </div>
