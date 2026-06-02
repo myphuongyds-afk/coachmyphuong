@@ -2,9 +2,12 @@
 //  ⚙️  CẤU HÌNH — chỉnh tại đây, không cần sửa code bên dưới
 // ═══════════════════════════════════════════════════════════════
 const CONFIG = {
-  SHEET_NAME:   'Trang tính1',       // Tên sheet (tab) trong Google Sheets
-  SEPAY_TOKEN:  'NHAP_TOKEN_SEPAY', // Token bí mật — dán vào URL webhook của SePay
-  ORDER_PREFIX: 'BDH',              // Tiền tố mã đơn hàng (Bản Đồ Hạnh Phúc)
+  SHEET_NAME:    'Trang tính1',
+  SEPAY_TOKEN:   '',
+  ORDER_PREFIX:  'BDH',
+  RESEND_API_KEY: 're_SQwJJhnA_JVa8DifhWzSFRdQ6j1UfUjdd',
+  EMAIL_FROM:    'My Phương <workshop@coachmyphuong.com>',
+  EMAIL_SUBJECT: 'Xác nhận tham gia Workshop Bản đồ Hạnh Phúc (K01)',
 };
 
 // Tên cột — phải khớp chính xác với tiêu đề dòng 1 của Sheet
@@ -16,6 +19,8 @@ const COL = {
   EMAIL:      'Email',
   STATUS:     'Status',
   WHY:        'Why',
+  PACKAGE:    'Gói',
+  REG_AMOUNT: 'Số Tiền Đăng Ký',
   PAY_STATUS: 'Trạng Thái',
   AMOUNT:     'Số Tiền',
   TRANS_ID:   'Mã Giao Dịch',
@@ -50,7 +55,9 @@ function handleRegister(params) {
     [COL.PHONE]:      params.Phone  || '',
     [COL.EMAIL]:      params.Email  || '',
     [COL.STATUS]:     params.Status || '',
-    [COL.WHY]:        params.Why    || '',
+    [COL.WHY]:        params.Why     || '',
+    [COL.PACKAGE]:    params.Package || '',
+    [COL.REG_AMOUNT]: params.Amount  || '',
     [COL.PAY_STATUS]: 'Chờ thanh toán ⏳',
     [COL.AMOUNT]:     '',
     [COL.TRANS_ID]:   '',
@@ -122,6 +129,8 @@ function doPost(e) {
 
     const data = sheet.getDataRange().getValues();
     const descUpper = description.toUpperCase();
+    const nameIdx  = headers.indexOf(COL.NAME);
+    const emailIdx = headers.indexOf(COL.EMAIL);
 
     for (let i = 1; i < data.length; i++) {
       const orderId = String(data[i][colIdx]).trim();
@@ -129,11 +138,17 @@ function doPost(e) {
 
       // Tìm mã đơn trong nội dung chuyển khoản (không phân biệt hoa thường)
       if (descUpper.includes(orderId.toUpperCase())) {
-        const row = i + 1; // chuyển sang 1-based
+        const row = i + 1;
         if (payIdx >= 0) sheet.getRange(row, payIdx + 1).setValue('Đã thanh toán ✅');
         if (amtIdx >= 0) sheet.getRange(row, amtIdx + 1).setValue(amount);
         if (trnIdx >= 0) sheet.getRange(row, trnIdx + 1).setValue(transId);
         if (tmIdx  >= 0) sheet.getRange(row, tmIdx  + 1).setValue(new Date());
+
+        // Gửi email xác nhận
+        const customerName  = nameIdx  >= 0 ? String(data[i][nameIdx])  : '';
+        const customerEmail = emailIdx >= 0 ? String(data[i][emailIdx]) : '';
+        if (customerEmail) sendConfirmationEmail(customerEmail, customerName, orderId);
+
         return jsonOut({ success: true, matched: true, orderId: orderId });
       }
     }
@@ -175,4 +190,55 @@ function jsonOut(data) {
   return ContentService
     .createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  GỬI EMAIL XÁC NHẬN QUA RESEND
+// ═══════════════════════════════════════════════════════════════
+function sendConfirmationEmail(toEmail, toName, orderId) {
+  var greeting = toName ? 'Chào ' + toName + ',' : 'Chào bạn,';
+
+  var body = greeting + '\n\n'
++ 'Cảm ơn bạn đã đăng ký và hoàn tất thanh toán cho workshop "Bản đồ Hạnh Phúc" cùng Coach My Phương.\n\n'
++ 'Phương rất trân trọng sự hiện diện của bạn trong hành trình này. Hy vọng đây sẽ là khoảng thời gian để bạn được chậm lại một chút, kết nối sâu hơn với chính mình và mở ra những góc nhìn mới về tình yêu, hạnh phúc và hành trình trở thành phiên bản rạng rỡ hơn của bản thân.\n\n'
++ '---\n\n'
++ 'THÔNG TIN WORKSHOP\n\n'
++ 'Thời gian: 19h30 - 21h30 | 13 – 15/06/2026\n'
++ 'Hình thức: Online qua Zoom\n'
++ 'Link Zoom: Sẽ được gửi trong nhóm Zalo lớp\n\n'
++ 'Nhóm Zalo lớp (vui lòng tham gia để nhận link và cập nhật thông tin):\n'
++ 'https://zalo.me/g/awynvvv0lsd6c44waiju\n\n'
++ '---\n\n'
++ 'NỘI DUNG CHƯƠNG TRÌNH\n\n'
++ 'Ngày 1 — Công thức chìa khóa để xây dựng mối quan hệ hạnh phúc, bền vững\n\n'
++ '- Nhận diện những lý do khiến bạn chưa gặp được người phù hợp\n'
++ '- 3 yếu tố nền tảng không thể thiếu trong một mối quan hệ hạnh phúc bền vững\n'
++ '- Tìm hiểu "Bản đồ hạnh phúc" — bộ công cụ giúp bạn thấu hiểu chính mình trong tình yêu\n\n'
++ 'Ngày 2 — Tỏa rạng từ bên trong để thu hút và kiến tạo mối quan hệ như ý\n\n'
++ '- Nuôi dưỡng nội tâm và xây dựng sức hút đến từ bên trong\n'
++ '- Trở thành "phiên bản rạng rỡ nhất" để đón nhận tình yêu mà bạn xứng đáng\n'
++ '- Thực hành cam kết hành động và lộ trình chuyển hóa sau workshop\n\n'
++ '---\n\n'
++ 'Một vài lưu ý nhỏ:\n\n'
++ '- Chuẩn bị không gian yên tĩnh và thoải mái cho mình\n'
++ '- Có thể mang theo sổ tay để ghi lại những điều chạm đến trái tim bạn\n'
++ '- Workshop có recording để bạn xem lại bất cứ lúc nào\n\n'
++ 'Hẹn gặp bạn trong hành trình "Bản đồ Hạnh Phúc" nhé.\n\n'
++ 'My Phương';
+
+  var payload = {
+    from:     CONFIG.EMAIL_FROM,
+    to:       [toEmail],
+    reply_to: 'myphuongyds@gmail.com',
+    subject:  CONFIG.EMAIL_SUBJECT,
+    text:     body
+  };
+
+  UrlFetchApp.fetch('https://api.resend.com/emails', {
+    method:             'post',
+    contentType:        'application/json',
+    headers:            { 'Authorization': 'Bearer ' + CONFIG.RESEND_API_KEY },
+    payload:            JSON.stringify(payload),
+    muteHttpExceptions: true
+  });
 }

@@ -246,20 +246,48 @@
   <!-- INVESTMENT -->
   <section class="investment" id="dau-tu">
     <div class="container">
-      <p class="section-tag">Mức Đầu Tư Cho Hạnh Phúc</p>
-      <div class="investment-card">
-        <div class="investment-badge">279K</div>
-        <div class="investment-content">
-          <h2>Đầu tư nhỏ cho <em>một hành trình chuyển hóa lớn</em></h2>
-          <p class="investment-note"><strong>Phương</strong> sẽ đồng hành cùng bạn trên mỗi bước thay đổi, giúp bạn đi
-            đúng hướng và kiến tạo hạnh phúc.</p>
-          <p class="gift-heading"><strong>✦ 10 bạn đầu tiên</strong> nhận tặng kèm Bộ công cụ độc quyền:</p>
-          <ul>
-            <li class="gift-item">Bộ công cụ chẩn đoán năng lực xây dựng mối quan hệ hạnh phúc: <em>Blossomed
-                relationship diagnosis</em> trị giá 499K</li>
-            <li>Tư vấn <strong>30 phút 1:1</strong> sau chương trình</li>
+      <p class="section-tag">Chọn Gói Tham Gia</p>
+      <h2 class="section-title">Đầu tư vào <em>hành trình của bạn</em></h2>
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <div class="pricing-price">50<span>K</span></div>
+          <div class="pricing-name">Tham Dự</div>
+          <ul class="pricing-list">
+            <li>Tham dự workshop 2 ngày</li>
+            <li>Zoom Online live</li>
+            <li>Recording để xem lại</li>
           </ul>
+          <a href="#dang-ky" class="btn-pricing" data-pkg="basic" onclick="preselectPackage('basic')">Chọn Gói Này</a>
         </div>
+
+        <div class="pricing-card">
+          <div class="pricing-price">150<span>K</span></div>
+          <div class="pricing-name">Tham Dự + Tài Liệu</div>
+          <ul class="pricing-list">
+            <li>Tham dự workshop 2 ngày</li>
+            <li>Zoom Online live</li>
+            <li>Recording để xem lại</li>
+            <li>✦ Tài liệu workshop gửi về</li>
+          </ul>
+          <a href="#dang-ky" class="btn-pricing" data-pkg="standard" onclick="preselectPackage('standard')">Chọn Gói Này</a>
+        </div>
+
+        <div class="pricing-card pricing-card--featured">
+          <div class="pricing-popular">Phổ Biến Nhất ✦</div>
+          <div class="pricing-price">279<span>K</span></div>
+          <div class="pricing-name">Trọn Gói</div>
+          <ul class="pricing-list">
+            <li>Tham dự workshop 2 ngày</li>
+            <li>Zoom Online live</li>
+            <li>Recording để xem lại</li>
+            <li>✦ Tài liệu workshop gửi về</li>
+            <li>✦ Bộ công cụ độc quyền</li>
+            <li>✦ Phiên Coach 1:1 với Phương<br><small>(30–45 phút)</small></li>
+          </ul>
+          <a href="#dang-ky" class="btn-pricing btn-pricing--featured" data-pkg="premium" onclick="preselectPackage('premium')">Chọn Gói Này</a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -299,6 +327,15 @@
         <div class="form-group">
           <label for="why">Bạn muốn đạt được điều gì từ workshop này?</label>
           <textarea id="why" name="Why" rows="3" placeholder="Chia sẻ để chúng tôi hiểu bạn hơn..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="package">Gói tham gia *</label>
+          <select id="package" name="Package" class="form-select" required>
+            <option value="" disabled selected>— Chọn gói tham gia —</option>
+            <option value="basic">50K — Tham dự</option>
+            <option value="standard">150K — Tham dự + Tài liệu</option>
+            <option value="premium">279K — Trọn gói + Coach 1:1 ⭐ Phổ biến nhất</option>
+          </select>
         </div>
         <button type="submit" class="btn-submit" id="submitBtn">Đăng Ký Giữ Chỗ Ngay ✦</button>
         <p class="register-note">Zoom Online + Ghi âm recording</p>
@@ -378,11 +415,28 @@
           <span class="qr-label">Số tiền</span>
           <strong id="qrAmount" class="qr-value qr-value--price">279.000 ₫</strong>
         </div>
+        <div class="qr-divider"></div>
+        <div class="qr-info-row">
+          <span class="qr-label">Ngân hàng</span>
+          <span class="qr-value">VietinBank</span>
+        </div>
+        <div class="qr-info-row">
+          <span class="qr-label">Số tài khoản</span>
+          <div class="qr-copy-group">
+            <code id="qrAccNo" class="qr-code-text">109006855197</code>
+            <button class="btn-copy" id="btnCopyAcc" onclick="copyAccNo()" title="Sao chép số tài khoản">📋</button>
+          </div>
+        </div>
+        <div class="qr-info-row">
+          <span class="qr-label">Chủ tài khoản</span>
+          <span class="qr-value">TO THI MY PHUONG</span>
+        </div>
+        <div class="qr-divider"></div>
         <div class="qr-info-row">
           <span class="qr-label">Nội dung CK</span>
           <div class="qr-copy-group">
             <code id="qrOrderId" class="qr-code-text">—</code>
-            <button class="btn-copy" onclick="copyOrderId()" title="Sao chép mã đơn">📋</button>
+            <button class="btn-copy" onclick="copyOrderId()" title="Sao chép nội dung chuyển khoản">📋</button>
           </div>
         </div>
       </div>
